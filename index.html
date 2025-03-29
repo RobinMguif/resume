@@ -46,78 +46,72 @@
 	.link:hover {
     color: black; /* Change to any color when hovered */
 	}
-/* Preloader Fullscreen */
-#preloader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #000; /* Black Background */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+	/* Preloader Fullscreen */
+	#preloader {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: #000; /* Black Background */
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		z-index: 9999;
+	}
 
-/* Stylish Text */
-.preloader-text {
-    font-size: 40px;
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    color: #3498db; /* Blue Color */
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    animation: fadeInOut 2s infinite alternate;
-}
+	/* Typing Effect Text */
+	.preloader-text {
+		font-size: 40px;
+		font-weight: bold;
+		font-family: "Courier New", monospace;
+		color: #3498db; /* Blue Color */
+		white-space: nowrap;
+		overflow: hidden;
+		border-right: 3px solid #3498db;
+		width: 0;
+		animation: typing 2s steps(10, end) forwards, blink 0.6s infinite;
+	}
 
-/* Bouncing Dots Loader */
-.dots-loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+	/* Progress Bar */
+	.progress-bar {
+		width: 200px;
+		height: 5px;
+		background: rgba(255, 255, 255, 0.2);
+		margin-top: 20px;
+		border-radius: 5px;
+		overflow: hidden;
+	}
 
-.dots-loader span {
-    width: 12px;
-    height: 12px;
-    margin: 0 5px;
-    background-color: #3498db; /* Blue Dots */
-    border-radius: 50%;
-    display: inline-block;
-    animation: bounce 1.5s infinite ease-in-out;
-}
+	/* Progress Animation */
+	.progress {
+		height: 100%;
+		width: 0;
+		background: #3498db;
+		animation: progressLoad 3s linear forwards;
+	}
 
-/* Delay each dot animation */
-.dots-loader span:nth-child(1) {
-    animation-delay: 0s;
-}
-.dots-loader span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-.dots-loader span:nth-child(3) {
-    animation-delay: 0.4s;
-}
+	/* Typing Effect Animation */
+	@keyframes typing {
+		from { width: 0; }
+		to { width: 160px; } /* Adjust to fit "ROBIN ROY" */
+	}
 
-/* Bouncing Animation */
-@keyframes bounce {
-    0%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-15px); }
-}
+	/* Blinking Cursor */
+	@keyframes blink {
+		50% { border-color: transparent; }
+	}
 
-/* Text Animation */
-@keyframes fadeInOut {
-    0% { opacity: 0.3; }
-    100% { opacity: 1; }
-}
+	/* Progress Bar Animation */
+	@keyframes progressLoad {
+		0% { width: 0; }
+		100% { width: 100%; }
+	}
 </style>
     <body>
         <div id="preloader">
-			<h1 class="preloader-text">ROBIN ROY</h1>
-			<div class="dots-loader">
-				<span></span>
-				<span></span>
-				<span></span>
+			<h1 class="preloader-text"></h1>
+			<div class="progress-bar">
+				<div class="progress"></div>
 			</div>
 		</div>
         <!--================Header Menu Area =================-->
@@ -470,7 +464,12 @@
 			window.addEventListener("load", function () {
 				setTimeout(function () {
 					document.getElementById("preloader").style.display = "none";
-				}, 3000); // 3000ms = 3 seconds
+				}, 3000); // 3 seconds delay
+			});
+
+			// Typing Effect for "ROBIN ROY"
+			document.addEventListener("DOMContentLoaded", function () {
+				document.querySelector(".preloader-text").textContent = "ROBIN ROY";
 			});
 		</script>
     </body>
