@@ -46,73 +46,59 @@
 	.link:hover {
     color: black; /* Change to any color when hovered */
 	}
-	/* Preloader Fullscreen */
-	#preloader {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		background: #000; /* Black Background */
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		z-index: 9999;
-	}
+/* Fullscreen Preloader */
+#preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000; /* Black Background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
-	/* Typing Effect Text */
-	.preloader-text {
-		font-size: 40px;
-		font-weight: bold;
-		font-family: "Courier New", monospace;
-		color: #3498db; /* Blue Color */
-		white-space: nowrap;
-		overflow: hidden;
-		border-right: 3px solid #3498db;
-		width: 0;
-		animation: typing 2s steps(10, end) forwards, blink 0.6s infinite;
-	}
+/* Base Text Style */
+.preloader-text {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: "Arial", sans-serif;
+    color: rgba(255, 255, 255, 0.2); /* Faint white base text */
+    position: relative;
+    text-transform: uppercase;
+}
 
-	/* Progress Bar */
-	.progress-bar {
-		width: 200px;
-		height: 5px;
-		background: rgba(255, 255, 255, 0.2);
-		margin-top: 20px;
-		border-radius: 5px;
-		overflow: hidden;
-	}
+/* Blue Loading Bar Effect */
+.preloader-text::before {
+    content: "ROBIN ROY";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    color: #3498db; /* Blue Color */
+    overflow: hidden;
+    white-space: nowrap;
+    animation: fillText 3s linear forwards;
+    background: linear-gradient(
+        90deg,
+        rgba(52, 152, 219, 1) 0%,
+        rgba(52, 152, 219, 0.8) 100%
+    ); /* Blue gradient for loading bar */
+    -webkit-background-clip: text;
+    background-clip: text;
+}
 
-	/* Progress Animation */
-	.progress {
-		height: 100%;
-		width: 0;
-		background: #3498db;
-		animation: progressLoad 3s linear forwards;
-	}
-
-	/* Typing Effect Animation */
-	@keyframes typing {
-		from { width: 0; }
-		to { width: 160px; } /* Adjust to fit "ROBIN ROY" */
-	}
-
-	/* Blinking Cursor */
-	@keyframes blink {
-		50% { border-color: transparent; }
-	}
-
-	/* Progress Bar Animation */
-	@keyframes progressLoad {
-		0% { width: 0; }
-		100% { width: 100%; }
-	}
+/* Loading Animation */
+@keyframes fillText {
+    from { width: 0%; }
+    to { width: 100%; }
+}
 </style>
     <body>
         <div id="preloader">
-			<h1 class="preloader-text"></h1>
-			<div class="progress-bar">
-				<div class="progress"></div>
-			</div>
+			<h1 class="preloader-text">ROBIN ROY</h1>
 		</div>
         <!--================Header Menu Area =================-->
         <header class="header_area">
@@ -462,15 +448,10 @@
         <script src="js/theme.js"></script>
 		<script>
 			window.addEventListener("load", function () {
-				setTimeout(function () {
-					document.getElementById("preloader").style.display = "none";
-				}, 3000); // 3 seconds delay
-			});
-
-			// Typing Effect for "ROBIN ROY"
-			document.addEventListener("DOMContentLoaded", function () {
-				document.querySelector(".preloader-text").textContent = "ROBIN ROY";
-			});
-		</script>
+    setTimeout(function () {
+        document.getElementById("preloader").style.display = "none";
+    }, 3000); // Show for 3 seconds
+});
+			</script>
     </body>
 </html>
